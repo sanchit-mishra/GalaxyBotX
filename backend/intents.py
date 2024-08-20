@@ -28,6 +28,14 @@ phrases = {
         "count class", "number of classes", "total classes",
         "how many classes", "class count", "classes available",
         "count of classes", "number of available classes"
+    ],
+    "create_course": [
+        "create a course", "develop a course", "generate a course", "create a java course", "Create a new course",
+        "develop a new course", "generate a new course", "Build a new course", "create course", "develop course", "generate course", "make course"
+        "Start a new course", "Set up a new course", "Build a course", "Create a training course", "Can you help me create a course?"
+    ],
+    "assign_course_to_all": [
+        "assign course java to all", "assign course to all", "assign course to everyone", ""
     ]
 }
 
@@ -47,8 +55,9 @@ def identify_intent_and_extract_info(user_input):
         # Extract ID or unique field if applicable
         course_id = None
         class_id = None
+        course_title = None
 
-        if intent in ["fetch_course", "fetch_class"]:
+        if intent in ["fetch_course", "fetch_class", "create_course", "assign_course_to_all"]:
             # Example of extracting an ID from a string like "course ID 123"
             course_id_match = re.search(r'course\sID\s(\w+)', user_input, re.IGNORECASE)
             if course_id_match:
@@ -58,6 +67,10 @@ def identify_intent_and_extract_info(user_input):
             if class_id_match:
                 class_id = class_id_match.group(1)
 
-        return intent, course_id, class_id
+            course_title_match = re.search(r'course\sTitle\s(\w+)', user_input, re.IGNORECASE)
+            if course_title_match:
+                course_title = course_title_match.group(1)    
+
+        return intent, course_id, class_id, course_title
 
     return "unknown", None, None

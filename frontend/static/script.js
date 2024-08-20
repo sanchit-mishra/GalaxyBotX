@@ -2,8 +2,9 @@
 function sendMessage() {
     const userInput = document.getElementById("userInput").value;
     const chatLog = document.getElementById("chatLog");
-
-    fetch("/api/chat", {
+    console.log(userInput);
+    console.log(chatLog);
+    fetch("/api/intent", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
