@@ -1,6 +1,5 @@
-test
-:1
-:q
-
-
-
+Install Python3
+Dependencies
+Flask
+RE
+spacy
